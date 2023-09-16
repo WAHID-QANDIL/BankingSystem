@@ -1,5 +1,5 @@
 # BankingSystem 
-##C++
+## C++
 Banking System full control and easy to add, delete, update, find and store clients data 
 ![1608352169](https://github.com/WAHID-QANDIL/BankingSystem/assets/103429590/33dcb2ed-3256-40d3-aa00-20032bb08f06)
 
