@@ -1,0 +1,7 @@
+﻿  Banking system.cpp
+  Operations.cpp
+C:\Users\hosam\source\repos\Banking system\Operations.cpp(53,23): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+C:\Users\hosam\source\repos\Banking system\Operations.cpp(111,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hosam\source\repos\Banking system\Operations.cpp(236,29): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+  Generating Code...
+  Banking system.vcxproj -> C:\Users\hosam\source\repos\Banking system\x64\Debug\Banking system.exe
