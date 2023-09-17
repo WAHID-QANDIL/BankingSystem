@@ -25,4 +25,5 @@ namespace OP {
 	void findClient(string);
 	void endSystem();
 	void startProgram();
+	bool isExist(string);
 };

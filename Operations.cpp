@@ -57,14 +57,37 @@ void OP::CreateClient() {
 	UpperFirstLetter(clientName);
 	ToupperString(accountNumber);
 
-	client.setAccountNumber(accountNumber);
 	client.setClientName(clientName);
 	client.setClientEmail(clientEmail);
 	client.setClientphone(phoneNumber);
 	client.setPinCode(pinCode);
 	client.setClientBalance(balance);
+	while (isExist(accountNumber))
+	{
+		cout << "Client with this account number is exist " << endl
+			<< "Please enter different account number" << endl;
+		cin >> accountNumber;
+		ToupperString(accountNumber);
+	}
+
+	client.setAccountNumber(accountNumber);
 	Database::Data.push_back(client);
 }
+bool OP::isExist(string accountNumber)
+{
+	
+	for (Client &client : Database::Data)
+	{
+		if (client.getAccountNumber() == accountNumber)
+		{
+			return true;
+		}
+
+	}
+	return false;
+
+}
+
 void OP::showClintList() {
 	system("cls");
 	cout << setw(90) << "Client List " << Database::Data.size() << " Client(s)" << endl

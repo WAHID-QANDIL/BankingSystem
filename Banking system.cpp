@@ -7,4 +7,5 @@ using namespace Database;
 int main()
 {
 	OP::startProgram();
+	return 0;
 }
