@@ -87,28 +87,28 @@ bool OP::isExist(string accountNumber)
 	return false;
 
 }
-
 void OP::showClintList() {
 	system("cls");
-	cout << setw(90) << "Client List " << Database::Data.size() << " Client(s)" << endl
-		<< "\t--------------------------------------------------------------------------------------------------------------------------------------------------" << endl
-		<< setw(25) << "| Account Number"
-		<< setw(20) << "| Pin Code"
-		<< setw(24) << "| Client Name"
-		<< setw(30) << "| Phone "
-		<< setw(20) << "| Balance"
-		<< setw(30) << "| Client Email" << endl
-		<< "\t--------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	for (Client& cl : Database::Data)
+	cout << right << "\t\t\t\t\t\t\t" << "Client List " << Database::Data.size() << " Client(s)" << endl
+		<< "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl
+		<< "| " << left << setw(15) << "Account Number"
+		<< "| " << left << setw(10) << "Pin Code"
+		<< "| " << left << setw(40) << "Client Name"
+		<< "| " << left << setw(15) << "Phone "
+		<< "| " << left << setw(15) << "Balance"
+		<< "| " << left << setw(30) << "Client Email" << endl
+		<< "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	for (Client& cl :Database::Data.size())
 	{
-		cout << setw(20) << cl.getAccountNumber()
-			<< setw(25) << cl.getPinCode()
-			<< setw(24) << cl.getClientName()
-			<< setw(30) << cl.getPhoneNumber()
-			<< setw(20) << cl.getBalance()
-			<< setw(30) << cl.getClientEmail() << endl;
+		cout << "| " << setw(15) << left << cl.getAccountNumber()
+			<< "| " << setw(10) << left << cl.getPinCode()
+			<< "| " << setw(40) << left << cl.getClientName()
+			<< "| " << setw(15) << left << cl.getPhoneNumber()
+			<< "| " << setw(15) << left << cl.getBalance()
+			<< "| " << setw(30) << left << cl.getClientEmail()
+			<< endl;
 	}
-	cout << "\t--------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 void OP::showClintInfo(Client client)
 {
