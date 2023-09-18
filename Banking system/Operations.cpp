@@ -261,6 +261,7 @@ void OP::UpdateClientInfo(string str, vector<Client> Data, string fileName, stri
 			string phoneNumber;
 			long long balance;
 			int pinCode;
+			showClintInfo(client);
 
 			cout << "Now you editing data for client with acount number : " << client.getAccountNumber() << endl;
 
