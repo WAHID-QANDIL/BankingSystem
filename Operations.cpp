@@ -75,17 +75,14 @@ void OP::CreateClient() {
 }
 bool OP::isExist(string accountNumber)
 {
-	
-	for (Client &client : Database::Data)
+	for (Client& client : Database::Data)
 	{
 		if (client.getAccountNumber() == accountNumber)
 		{
 			return true;
 		}
-
 	}
 	return false;
-
 }
 void OP::showClintList() {
 	system("cls");
@@ -98,7 +95,7 @@ void OP::showClintList() {
 		<< "| " << left << setw(15) << "Balance"
 		<< "| " << left << setw(30) << "Client Email" << endl
 		<< "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	for (Client& cl :Database::Data.size())
+	for (Client& cl : Database::Data)
 	{
 		cout << "| " << setw(15) << left << cl.getAccountNumber()
 			<< "| " << setw(10) << left << cl.getPinCode()

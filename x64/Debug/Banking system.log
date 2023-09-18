@@ -1,5 +1,5 @@
 ﻿  Operations.cpp
-C:\Users\hosam\source\repos\Banking system\Operations.cpp(53,23): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-C:\Users\hosam\source\repos\Banking system\Operations.cpp(134,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hosam\source\repos\Banking system\Operations.cpp(259,29): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-  Banking system.vcxproj -> C:\Users\hosam\source\repos\Banking system\x64\Debug\Banking system.exe
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(53,23): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(131,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(256,29): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+  Banking system.vcxproj -> C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\x64\Debug\Banking system.exe
