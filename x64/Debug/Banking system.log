@@ -1,7 +1,13 @@
-﻿  Operations.cpp
-C:\Users\hosam\source\repos\Banking system\Operations.cpp(54,23): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-C:\Users\hosam\source\repos\Banking system\Operations.cpp(137,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hosam\source\repos\Banking system\Operations.cpp(272,29): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-C:\Users\hosam\source\repos\Banking system\Operations.cpp(392,18): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hosam\source\repos\Banking system\Operations.cpp(399,25): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
-  Banking system.vcxproj -> C:\Users\hosam\source\repos\Banking system\x64\Debug\Banking system.exe
+﻿  Banking system.cpp
+  Clint.cpp
+  Database.cpp
+  Operations.cpp
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(55,23): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(136,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(271,29): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(414,18): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(421,25): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(483,25): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\Operations.cpp(513,16): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+  Generating Code...
+  Banking system.vcxproj -> C:\Users\hosam\OneDrive - Delta Technological University\Desktop\GitHub\BankingSystem\x64\Debug\Banking system.exe

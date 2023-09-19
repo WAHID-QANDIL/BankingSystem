@@ -5,22 +5,22 @@
 #include<iomanip>
 #include<fstream>
 //Create dataStorage list
-
+//using namespace std;
 int OP::readMenueNumber()
 {
 	int number = 0;
 	do
 	{
-		cout << "Enter number between 1 : 6 >>" << endl;
+		cout << "Enter number between 1 : 7 >>" << endl;
 		cin >> number;
 
 		if (cin.fail())
 		{
 			cin.clear(number);
 			cin.ignore(std::numeric_limits<std::streamsize>::max());
-			number = 0;
+			number = -1;
 		}
-	} while (number < 1 || number > 6);
+	} while (number < 1 || number > 7);
 	return number;
 }
 int OP::printStartMenue() {
@@ -33,7 +33,8 @@ int OP::printStartMenue() {
 		<< "(3) Delet Client." << endl
 		<< "(4) Update Client Information." << endl
 		<< "(5) Find Client." << endl
-		<< "(6) Exit." << endl;
+		<< "(6) Transaction" << endl
+		<< "(7) Exit." << endl;
 	int number = OP::readMenueNumber();
 	return number;
 }
@@ -88,7 +89,6 @@ bool OP::isExistonFile(string accountNumber, string fileName, string seperator)
 	}
 	return false;
 }
-
 void OP::showClintList(vector<Client> clients) {
 	system("cls");
 	cout << right << "\t\t\t\t\t\t\t" << "Client List " << clients.size() << " Client(s)" << endl
@@ -112,7 +112,6 @@ void OP::showClintList(vector<Client> clients) {
 	}
 	cout << "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
-
 void OP::showClintInfo(Client client)
 {
 	cout << "===== Client Info ======" << endl
@@ -261,7 +260,7 @@ void OP::UpdateClientInfo(string str, vector<Client> Data, string fileName, stri
 			string phoneNumber;
 			long long balance;
 			int pinCode;
-
+			showClintInfo(client);
 			cout << "Now you editing data for client with acount number : " << client.getAccountNumber() << endl;
 
 			accountNumber = OP::readString("Enter new Account Number:");
@@ -335,6 +334,7 @@ void OP::endSystem()
 }
 void OP::startProgram()
 {
+	short menueNumber = 0;
 homeScreen:
 	//vector<Client> clients = convertFromfileTovector(fileName, seperator);
 	int selectedNumber = OP::printStartMenue();
@@ -356,12 +356,36 @@ homeScreen:
 		OP::findClient(OP::readString("Enter the account number for specific client : "), convertFromfileTovector(fileName, seperator));
 		break;
 	case 6:
+	transactionMenue:
+		showTrasactionScreen();
+		menueNumber = readTransactionMenueNumber("Enter number between 1 : 4 >>");
+		if (menueNumber > 3)
+		{
+			goto homeScreen;
+		}
+		else if (menueNumber == 1)
+		{
+			printDepositScreen();
+			deposite(readString("Enter account number for deposite:"), fileName, seperator);
+		}
+		else if (menueNumber == 2)
+		{
+			printWithdrawScreen();
+			withDraw(readString("Enter account number for withdraw"), fileName, seperator);
+		}
+		else
+		{
+			transactionMenue(fileName, seperator);
+		}
+		cout << "Enter any key to go back to transaction Menue :)" << endl;
+		system("pause");
+		goto transactionMenue;
+		break;
+	case 7:
 		OP::endSystem();
 		break;
-	default:
-		break;
 	}
-	if (selectedNumber != 6)
+	if (selectedNumber != 7)
 	{
 		cout << "Enter any key to go back to home screen :)" << endl;
 		system("pause");
@@ -369,7 +393,6 @@ homeScreen:
 	}
 	system("pause");
 }
-
 string OP::convertFromRecordTostring(Client client, string seperator)
 {
 	string line;
@@ -381,7 +404,6 @@ string OP::convertFromRecordTostring(Client client, string seperator)
 	line += (client.getClientEmail()) + seperator;
 	return line;
 }
-
 Client OP::convertFromStringToRecord(string line, string seperator)
 {
 	Client client;
@@ -424,7 +446,6 @@ vector<Client> OP::convertFromfileTovector(string filename, string seperator)//r
 }
 void OP::writeONfile(Client client, string fileName, string seperator)
 {
-	cout << client.getAccountNumber();
 	fstream file;
 	file.open(fileName, ios::app);
 	if (file.is_open())
@@ -433,4 +454,134 @@ void OP::writeONfile(Client client, string fileName, string seperator)
 		file << convertFromRecordTostring(client, seperator);
 		file.close();
 	}
+}
+void OP::showTrasactionScreen()
+{
+	system("cls");
+	cout << "===== Client Info ======" << endl
+		<< "========================" << endl
+		<< "(1) Deposite" << endl
+		<< "(2) Withdraw" << endl
+		<< "(3) Total Balances" << endl
+		<< "(4) Go Back To Main Menue" << endl
+		<< "========================" << endl;
+}
+void OP::deposite(string accountNumber, string fileName, string seperator)
+{
+	fstream file;
+	ToupperString(accountNumber);
+	file.open(fileName, ios::in);
+	if (file.is_open())
+	{
+		if (isExistonFile(accountNumber, fileName, seperator))
+		{
+			vector<Client> vclient = convertFromfileTovector(fileName, seperator);
+			for (Client& client : vclient)
+			{
+				if (client.getAccountNumber() == accountNumber)
+				{
+					int depositeNumber = readInteger("Enter Deposite number : ");
+					client.setClientBalance(client.getBalance() + depositeNumber);
+					file.close();
+					break;
+				}
+			}
+			file.open(fileName, ios::out);
+			if (file.is_open())
+			{
+				for (Client client : vclient)
+				{
+					writeONfile(client, fileName, seperator);
+				}
+				cout << "Client information has been updated :)" << endl;
+			}
+		}
+		else
+		{
+			cout << "Client with this account number dosen't exist :(" << endl;
+		}
+		file.close();
+	}
+}
+void OP::withDraw(string accountNumber, string fileName, string seperator)
+{
+	fstream file;
+	ToupperString(accountNumber);
+	if (isExistonFile(accountNumber, fileName, seperator))
+	{
+		vector<Client> clients = convertFromfileTovector(fileName, seperator);
+		int withDraw = readInteger("Enter withDraw number do you want: ");
+
+		for (Client& client : clients)
+		{
+			if (client.getAccountNumber() == accountNumber)
+			{
+				if (client.getBalance() >= withDraw)
+				{
+					client.setClientBalance(client.getBalance() - withDraw);
+				}
+				else
+				{
+					cout << "This account doesn't have " << withDraw << " in his total balance :(" << endl;
+				}
+				break;
+			}
+		}
+		file.open(fileName, ios::out);
+		for (Client client : clients)
+		{
+			writeONfile(client, fileName, seperator);
+		}
+		cout << "Client information has been updated :)" << endl;
+		file.close();
+	}
+	else
+	{
+		cout << "Client with this account number dosen't exist :(" << endl;
+	}
+}
+void OP::transactionMenue(string fileName, string seperator)
+{
+	system("cls");
+	vector<Client>vclient = convertFromfileTovector(fileName, seperator);
+	cout << "\t\t\t\t Balances List(" << vclient.size() << ") Client(s)" << endl
+		<< "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl
+		<< "| " << left << setw(15) << "Account Number"
+		<< "| " << left << setw(30) << "Clienr Name"
+		<< "| " << left << setw(20) << "Balance" << endl
+		<< "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	long long totalBalances = 0;
+
+	for (Client client : vclient)
+	{
+		totalBalances += client.getBalance();
+		cout << "| " << setw(15) << left << client.getAccountNumber()
+			<< "| " << setw(30) << left << client.getClientName()
+			<< "| " << setw(20) << left << client.getBalance()
+			<< "| " << endl;
+	}
+	cout << "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl
+		<< "\t\t\t\t Total Balances = " << totalBalances << endl;
+}
+void OP::printDepositScreen()
+{
+	cout << "------------------------------" << endl
+		<< "-------Deposite Screen--------" << endl
+		<< "------------------------------" << endl;
+}
+void OP::printWithdrawScreen()
+{
+	cout << "------------------------------" << endl
+		<< "-------Withdraw Screen--------" << endl
+		<< "------------------------------" << endl;
+}
+short OP::readTransactionMenueNumber(string message)
+{
+	short number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number < 0 || number > 4);
+	return number;
 }

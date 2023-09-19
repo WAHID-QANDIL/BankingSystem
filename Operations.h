@@ -2,7 +2,6 @@
 #include<iostream>
 #include"Database.h"
 using namespace std;
-
 namespace OP {
 	const string fileName = "BankingClientsData.txt";
 	const string seperator = "//";
@@ -31,4 +30,11 @@ namespace OP {
 	Client convertFromStringToRecord(string, string);
 	string convertFromRecordTostring(Client client, string seperator);
 	void writeONfile(Client, string, string);
+	void showTrasactionScreen();
+	void deposite(string, string, string);
+	void withDraw(string, string, string);
+	void transactionMenue(string, string);
+	void printWithdrawScreen();
+	void printDepositScreen();
+	short readTransactionMenueNumber(string message);
 };
